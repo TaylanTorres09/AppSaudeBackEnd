@@ -1,11 +1,27 @@
-// Exemplos
-
-//https://bezkoder.com/node-js-mongodb-auth-jwt/
-
-
-//https://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management#user-model-js
-
-//https://github.com/trulymittal/Nodejs-REST-API
+const jwt = require('jsonwebtoken')
+const secret = 'segredo'
 
 
-//https://github.com/beaucarnes/mern-exercise-tracker-mongodb/tree/master/backend
+// Analisando o token, geral:
+
+verifyToken = (req, res, next) => {
+    const token = req.header('Authorization').replace('Bearer ', '')
+
+    if(!token)
+        return res.status(403).send({message: 'No token provided'});
+    
+    if(token.split(' ').length === 2)
+        return res.status(401).send({message: 'Token error'});
+    
+    jwt.verify(token, secret, (err, decoded) => {
+        if(err)
+            return res.status(401).send({message: 'Unauthorized, token invalid!'})
+    })
+    const scheme  = parts;
+    if(!/^Bearer$/i.test(scheme))
+        return res.status(401).send({message: 'Token malformatted'})
+
+    next()
+}
+
+module.exports = verifyToken;
