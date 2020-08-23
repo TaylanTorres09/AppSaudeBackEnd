@@ -2,7 +2,7 @@ const express = require('express');
 const routes = require('./routes/routes');
 
 // Initialize DB
-require('./initDB')();
+require('./database/initDB')();
 
 const PORT =  3000;
 
