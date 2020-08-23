@@ -12,7 +12,7 @@ const PatientSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    patientData: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientData" }]
+    data: { type: mongoose.Schema.Types.ObjectId, ref: "PatientData" }
 });
 
 PatientSchema.pre('save', async function (next) {
@@ -23,27 +23,4 @@ PatientSchema.pre('save', async function (next) {
 
 const Patient = mongoose.model('Patient', PatientSchema);
 
-
-// ----------------------- patient data---------------------------
-
-
-const PatientDataSchema = new mongoose.Schema({
-    gender: {  type: String, require: true, },
-    
-    birth: { type: Date, required: true },
-    // Add more kind of data  <-------------- Taylan // DArlan
-
-
-
-    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional" }],
-    
-    goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]
-});
-
-const PatientData = mongoose.model('PatientData', PatientDataSchema);
-
-//--------------------------Export ------------------------
-
-
 module.exports = Patient;
-module.exports = PatientData;
