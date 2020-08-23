@@ -1,7 +1,7 @@
 const express = require('express')
 const routes = express.Router()
 
-const PatientController = require('../controllers/patientController/index');
+const PatientController = require('../controllers/patientController');
 
 
 

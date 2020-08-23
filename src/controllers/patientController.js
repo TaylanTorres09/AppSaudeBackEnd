@@ -1,7 +1,7 @@
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 
-const Patient = require('../../models/Patient');
+const Patient = require('../models/patient.model');
 
 module.exports = {
     getAll: async (req, res, next) => {
