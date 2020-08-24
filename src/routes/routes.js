@@ -17,6 +17,7 @@ const ProfessionalRegister = require('../auth/professionalRegister')
 routes
     // Users
     .get('/', PatientController.getAll)
+    .get('/test', [authJwt.verifyToken], PatientController.getAll)
 
     // Patient
     .post('/api/patient/authentication', PatientAuth.loginPatient)
