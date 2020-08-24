@@ -1,18 +1,17 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+
 
 // ----------------------- patient data---------------------------
 
 
 const PatientDataSchema = new mongoose.Schema({
    
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: "Patient" },
+    // owner: { type: mongoose.Schema.Types.ObjectId, ref: "Patient" },
 
     gender: {  type: String, require: true, },
     
     birth: { type: Date, required: true },
     // Add more kind of data  <-------------- Taylan // DArlan
-
 
 
     profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional" }],

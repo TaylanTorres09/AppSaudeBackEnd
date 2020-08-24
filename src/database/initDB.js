@@ -4,7 +4,7 @@ require('dotenv').config();
  
 
 module.exports = () => {
-    mongoose.connect( process.env.MONGODB_URI , {useNewUrlParser: true,  useUnifiedTopology: true })
+    mongoose.connect( process.env.MONGODB_URI , {useNewUrlParser: true,  useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
       console.log('Mongodb connected....');
     })

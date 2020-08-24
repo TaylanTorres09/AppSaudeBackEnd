@@ -15,18 +15,5 @@ module.exports = {
         }
     },
 
-    newPatient: async (req, res, next) => {
-        try {
-          const newPatient = new Patient(req.body);
-          const result = await newPatient.save();
-          res.send(result);
-        } catch (error) {
-          console.log(error.message);
-          if (error.name === 'ValidationError') {
-            next(createError(422, error.message));
-            return;
-          }
-          next(error);
-        }
-    }
+
 }

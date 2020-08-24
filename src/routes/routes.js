@@ -1,23 +1,29 @@
 const express = require('express')
 const routes = express.Router()
 
+const authJwt = require('../middleware/authJwt');
+
 const PatientController = require('../controllers/patientController');
 
-routes.use(require('../middleware/authJwt'));
-
 //Patient
-routes.use(require('../auth/patientAuth'))
-routes.use(require('../auth/patientRegister'))
+const PatientAuth = require('../auth/patientAuth')
+const PatientRegister = require('../auth/patientRegister')
 
 //Professional
-routes.use(require('../auth/professionalAuth'))
-routes.use(require('../auth/professionalRegister'))
-
+const ProfessionalAuth = require('../auth/professionalAuth')
+const ProfessionalRegister = require('../auth/professionalRegister')
 
 
 routes
     // Users
     .get('/', PatientController.getAll)
-    .post('/', PatientController.newPatient)
+
+    // Patient
+    .post('/api/patient/authentication', PatientAuth.loginPatient)
+    .post('/api/patient/register', PatientRegister.registerPatient)
+    // Professional
+    .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)
+    .post('/api/professional/register', ProfessionalRegister.registerProfessional)
+
 module.exports = routes
 
