@@ -2,25 +2,26 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Patient = require('../database/models/patient.model')
-const PatientController = require('../controllers/patientController');
 const secret = 'f36e0a6c9e1011cfacd75f6ea0c96610'
 
-module.exports = async (req, res) => {
-    const {email, password} = req.body;
-    const user = await Patient.findOne({email}).select('+password')
+module.exports = {
 
-    if(!user)
-        return res.status(400).send({message: 'User not found'})
+    loginPatient: async (req, res) => {
+        const { email, password } = req.body;
+        const user = await Patient.findOne({ email }).select('+password')
 
-    if(!await bcrypt.compare(password, user.password))
-        return res.status(400).send({message: 'Email or password is wrong'});
-    
-    user.password = undefined
+        if (!user)
+            return res.status(400).send({ message: 'User not found' })
 
-    const token = jwt.sign({id: user.id}, secret, {
-        expiresIn: 86400
-    })
+        if (!await bcrypt.compare(password, user.password))
+            return res.status(400).send({ message: 'Email or password is wrong' });
 
-    res.send({user, token})
+        user.password = undefined
+
+        const token = jwt.sign({ id: user.id }, secret, {
+            expiresIn: 86400
+        })
+
+        res.send({ user, token })
+    }
 }
-

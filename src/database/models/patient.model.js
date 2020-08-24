@@ -2,17 +2,17 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const PatientSchema = new mongoose.Schema({
-    firstName: {  type: String, require: true, },
+    firstName: {  type: String, require: true },
     
     lastName: { type: String, required: true },
 
     email: { type: String, unique: true, require: true, lowercase: true },
 
-    password: { type: String, required: true, select: false, },
+    password: { type: String, required: true, select: false },
 
     createdAt: { type: Date, default: Date.now, },
 
-    patientData: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientData" }]
+    data: { type: mongoose.Schema.Types.ObjectId, ref: "PatientData" }
 });
 
 PatientSchema.pre('save', async function (next) {
@@ -21,29 +21,5 @@ PatientSchema.pre('save', async function (next) {
     next();
 })
 
-const Patient = mongoose.model('Patient', PatientSchema);
-
-
-// ----------------------- patient data---------------------------
-
-
-const PatientDataSchema = new mongoose.Schema({
-    gender: {  type: String, require: true, },
-    
-    birth: { type: Date, required: true },
-    // Add more kind of data  <-------------- Taylan // DArlan
-
-
-
-    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional" }],
-    
-    goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]
-});
-
-const PatientData = mongoose.model('PatientData', PatientDataSchema);
-
-//--------------------------Export ------------------------
-
-
+const Patient = mongoose.model('Patient', PatientSchema, 'patient');
 module.exports = Patient;
-module.exports = PatientData;
