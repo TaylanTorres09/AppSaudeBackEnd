@@ -5,7 +5,7 @@ const secret = 'segredo'
 // Analisando o token, geral:
 module.exports = {
     verifyToken: async (req, res, next) => {
-        const token = req.header('Authorization').replace('Bearer ', '')
+        const token = req.headers["x-access-token"]
 
         if (!token)
             return res.status(403).send({ message: 'No token provided' });
@@ -15,13 +15,10 @@ module.exports = {
 
         jwt.verify(token, secret, (err, decoded) => {
             if (err)
-                return res.status(401).send({ message: 'Unauthorized, token invalid!' })
+                return res.status(401).send({ message: 'Unauthorized, token invalid!' });
+            req.userId = decoded.id;
+            return next();
         })
-        const scheme = parts;
-        if (!/^Bearer$/i.test(scheme))
-            return res.status(401).send({ message: 'Token malformatted' })
-
-        next()
     }
 
 }
