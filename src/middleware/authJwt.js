@@ -25,3 +25,12 @@ module.exports = {
     }
 
 }
+
+
+
+
+// Usar como padrãao para fazer o middleware verifi token
+// https://bezkoder.com/node-js-mongodb-auth-jwt/#Controller_for_Authentication
+
+// DA um ctrl f e procura isso no artigo
+// middlewares/authJwt.js
