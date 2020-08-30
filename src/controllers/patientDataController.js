@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 
 const PatientData = require('../database/models/patienteData.model');
+const Patient = require('../database/models/patient.model')
 
 module.exports = {
     getDataByUserId: async (req, res) => {
@@ -16,6 +17,7 @@ module.exports = {
     createData: async (req, res) => {
         try {
             const newPatientData = new PatientData(req.body);
+            
             const data = await newPatientData.save();
 
             res.send({data})
