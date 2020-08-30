@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes/routes');
+const cors = require('cors');
 
 // Initialize DB
 require('./database/initDB')();
@@ -9,6 +10,7 @@ const PORT =  3000;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(routes);
 
 
