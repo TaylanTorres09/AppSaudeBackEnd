@@ -18,11 +18,12 @@ module.exports = {
 
             const newPatient = new Patient(req.body);
             const user = await newPatient.save();
-            const newPatientData = new PatientData({patientId: user._id});
+            /*const newPatientData = new PatientData({patientId: user._id});
             const data = newPatientData.save();
             const patient = await Patient.findById(user.id)
             patient.data = data._id
-            patient.save()
+            patient.save()*/
+            
             user.password = undefined;
             const token = generateAccessToken({ id: user.id });
             res.send({ user, token });
