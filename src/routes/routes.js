@@ -22,6 +22,7 @@ const ProfessionalDataController = require('../controllers/professionalDataContr
 
 
 routes
+<<<<<<< HEAD
     // Users - Patient
     .get('/all/patient', PatientController.getAll)
     .get('/all/patient/test', [authJwt.verifyToken], PatientController.getAll) // Rota protegida
@@ -29,10 +30,15 @@ routes
     // Users - Professional
     .get('/all/professional', ProfessionalController.getAll)
     .get('/all/patient/test', [authJwt.verifyToken], ProfessionalController.getAll) // Rota protegida
+=======
+    // GEt all patient (test)
+    .get('/', PatientController.getAll)
+>>>>>>> master
 
     // Patient
     .post('/api/patient/authentication', PatientAuth.loginPatient)
     .post('/api/patient/register', PatientRegister.registerPatient)
+<<<<<<< HEAD
     .get('/api/patient/:id', PatientController.getUserByID)
     .get('/api/patient', PatientController.getUserByEmail) // http://localhost:3000/api/patient?email=maods@maods.com
 
@@ -54,6 +60,38 @@ routes
     .put('/api/professional/data/:id', ProfessionalDataController.updateData)
 
 
+=======
+    // .get('/api/patient/:id') ->  PatientController.getUserByID
+    // .get('/api/patient/:email') ->  PatientController.getUserByEmail
+
+    // PatientData
+    // .get('/api/patient/data') ->  PatientController.getDataByUserID
+    .post('/api/patient/data',  PatientController.createPatientData) 
+    // .update('/api/patient/data') ->  PatientController.updateData
+
+    // Professional
+    .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)
+    .post('/api/professional/register', ProfessionalRegister.registerProfessional)
+    // .get('/api/professional/:id') ->  ProfissionalController.getUserByID
+    // .get('/api/professional/:email') ->  ProfissionalController.getUserByEmail
+
+    // ProfessionalData
+    // .get('/api/professional/data') ->  PatientController.getDataByUserID
+    // .post('/api/professional/data') ->  PatientController.createData
+    // .update('/api/professional/data') ->  PatientController.updateData
+
+
+    // dailyAssesemnt
+    // .get('/api/dailyAssesemnt') ->  dailyAssesemntController.getDataByUserID
+    // .post('/api/professional') ->  dailyAssesemntController.createData
+    // .update('/api/dailyAssesemnt') ->  dailyAssesemntController.updateData
+
+    // goals
+    // .get('/api/goals') ->  goalsontroller.getDataByUserID
+    // .post('/api/goals') ->  goalsController.createData
+    // .update('/api/goals') ->  goalsController.updateData
+
+>>>>>>> master
 
 module.exports = routes
 
