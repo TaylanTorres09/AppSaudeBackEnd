@@ -6,11 +6,7 @@ const mongoose = require('mongoose');
 
 const PatientDataSchema = new mongoose.Schema({
    
-<<<<<<< HEAD
     patientId: { type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
-=======
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: "patient" },
->>>>>>> master
 
     gender: {  type: String },
     

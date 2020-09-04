@@ -12,11 +12,7 @@ const PatientSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-<<<<<<< HEAD
     professionalData: {type:mongoose.Schema.Types.ObjectId, ref:'professional'}
-=======
-    data: { type: mongoose.Schema.Types.ObjectId, ref: "patientData" }
->>>>>>> master
 });
 
 PatientSchema.pre('save', async function (next) {

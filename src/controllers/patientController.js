@@ -45,34 +45,9 @@ module.exports = {
             const results = await Patient.findOne({email: req.query.email});
             return res.json(results);
 
-<<<<<<< HEAD
         } catch (error) {
             console.log(error.message);
         }
     },
     
-=======
-
-
-
-
-//-------------------DAtA----------------
-    createPatientData: async (req, res) => {
-        try {
-            const newPatientData = new PatientData(req.body);
-            const data = await newPatientData.save();
-            res.send(data)
-
-        } catch (error) {
-            console.log(error.message);
-            if (error.name === 'ValidationError') {
-                next(createError(422, error.message));
-                return;
-            }
-            next(error);
-        }
-    }
-
-
->>>>>>> master
 }
