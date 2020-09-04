@@ -2,7 +2,8 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 
 const PatientData = require('../database/models/patienteData.model');
-const Patient = require('../database/models/patient.model')
+const Patient = require('../database/models/patient.model');
+const Professional = require('../database/models/professional.model');
 
 module.exports = {
     getDataByUserId: async (req, res) => {

@@ -10,7 +10,7 @@ const ProfissionalDDataSchema = new mongoose.Schema({
 
 
 
-    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" }],
+    patient: [{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" }],
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]
 });
 

@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 
 const Professional = require('../database/models/professional.model');
+const PatientData = require('../database/models/patienteData.model');
 
 module.exports = {
     getAll: async (req, res, next) => {
@@ -30,7 +31,17 @@ module.exports = {
         } catch (error) {
             console.log(error.message);
         }
-    }
+    },
+    getUserCuidadorId: async (req, res) => {
+        try {
+            const cuidador = await Professional.findById(req.params.id);
+            const patient = await PatientData.find({professional: cuidador});
+
+            return res.send(patient);
+        } catch (error) {
+            console.log(error.message);
+        }  
+    },
 
 
 }

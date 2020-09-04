@@ -12,7 +12,7 @@ const PatientSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    data: {}
+    professionalData: {type:mongoose.Schema.Types.ObjectId, ref:'professional'}
 });
 
 PatientSchema.pre('save', async function (next) {

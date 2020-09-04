@@ -14,7 +14,7 @@ const PatientDataSchema = new mongoose.Schema({
     // Add more kind of data  <-------------- Taylan // DArlan
 
 
-    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional" }],
+    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "profissional" }],
     
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]
 });
