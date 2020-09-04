@@ -31,14 +31,3 @@ module.exports = {
         }
     }
 }
-
-/*try {
-    const newPatientData = new PatientData(req.body);
-    
-    const data = await newPatientData.save();
-
-    res.send({data})
-} catch (error) {
-    console.log(error.message);
-    res.send('Erro')
-}*/
