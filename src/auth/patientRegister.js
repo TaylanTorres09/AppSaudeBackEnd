@@ -10,7 +10,7 @@ function generateAccessToken(user) {
 
 module.exports = {
     registerPatient: async (req, res, next) => {
-        const { email } = req.body
+        const { email, data } = req.body
         try {
             if ( await Patient.findOne({ email })) {
                 return res.status(400).send({ message: 'User exists' });
@@ -18,15 +18,9 @@ module.exports = {
 
             const newPatient = new Patient(req.body);
             const user = await newPatient.save();
-            const newPatientData = new PatientData({patientId: user._id});
-            const data = newPatientData.save();
-            const patient = await Patient.findById(user.id)
-            patient.data = data._id
-            patient.save()
             user.password = undefined;
             const token = generateAccessToken({ id: user.id });
             res.send({ user, token });
-
         } catch (error) {
             console.log(error.message);
             if (error.name === 'ValidationError') {
@@ -37,3 +31,14 @@ module.exports = {
         }
     }
 }
+
+/*try {
+    const newPatientData = new PatientData(req.body);
+    
+    const data = await newPatientData.save();
+
+    res.send({data})
+} catch (error) {
+    console.log(error.message);
+    res.send('Erro')
+}*/

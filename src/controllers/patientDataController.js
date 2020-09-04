@@ -17,10 +17,15 @@ module.exports = {
     createData: async (req, res) => {
         try {
             const newPatientData = new PatientData(req.body);
+            const newUser = await Patient.findById(newPatientData.patientId).populate('PatientData');
+            console.log(newUser)
             
-            const data = await newPatientData.save();
-
-            res.send({data})
+            if(newUser){
+                const data = await newPatientData.save();
+                res.send({data})
+            }else{
+                res.status(403).send({message: 'Usuário nulo'})
+            }
         } catch (error) {
             console.log(error.message);
             res.send('Erro')
