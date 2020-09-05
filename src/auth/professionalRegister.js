@@ -14,7 +14,7 @@ module.exports = {
 
             const newProfessional = new Professional(req.body);
             const user = await newProfessional.save();
-            const newProfessionalData = new ProfessionalData({Profissional_Id:  user._id});
+            const newProfessionalData = new ProfessionalData({profissional_id:  user._id});
             const data = await newProfessionalData.save();
 
             user.password = undefined;

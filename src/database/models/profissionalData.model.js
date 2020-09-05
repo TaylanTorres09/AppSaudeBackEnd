@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 
 const ProfissionalDDataSchema = new mongoose.Schema({
-    Profissional_Id: { type: mongoose.Schema.Types.ObjectId, ref: "profissional",  required: true },
+    profissional_id: { type: mongoose.Schema.Types.ObjectId, ref: "profissional",  required: true },
     gender: {  type: String },
     
     birth: { type: Date},
@@ -11,7 +11,7 @@ const ProfissionalDDataSchema = new mongoose.Schema({
 
 
 
-    patient: [{ type: mongoose.Schema.Types.ObjectId, ref: "patient" }],
+    patients: [{ type: mongoose.Schema.Types.ObjectId, ref: "patient" }],
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "goals" }]
 });
 

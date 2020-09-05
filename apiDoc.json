@@ -1,0 +1,56 @@
+[
+    {
+        "_comment": "CADASTRO PACIENTE  -> http://localhost:3000/api/patient/register",
+        "firstName": "lucas",
+        "lastName": "lucas",
+        "email": "aaoi@gmail.com",
+        "password": "lucas"
+    },
+    {
+        "_comment": "LOGIN PACIENTE  -> http://localhost:3000/api/patient/authentication",
+        "email": "maods@maods.com",
+        "password": "maods"
+    },
+    
+    {
+        "_comment": "CADASTRO CUIDADOR  -> http://localhost:3000/api/professional/register",
+        "firstName": "Dr Taylan",
+        "lastName": "Silva",
+        "Doc": "215806",
+        "emai": "tay@tay.com",
+        "password": "maods"
+    },
+
+    {
+        "_comment": "LOGIN CUIDADOR  -> http://localhost:3000/api/professional/authentication",
+        "emai": "tay@tay.com",
+        "password": "maods"
+    },
+
+
+
+
+    {
+        "_comment": "INSERÇÃO PACIENTE PELO CUIDADOR  -> http://localhost:3000/api/professional/data/patientInsertion",
+        "profissional_id": "5f53b2136bd5682a688896c2",
+        "patient_id": "5f53afa4dc17030d24cdedc5"
+    
+    },
+
+
+    {
+        "_comment": "RETORNAR DADOS DO CUIDADOR ENVIANDO ID  -> http://localhost:3000/api/professional/data/patientInsertion",
+        "profissional_id": "5f53b2136bd5682a688896c2"
+    }
+    
+
+
+
+
+
+
+
+
+
+
+]

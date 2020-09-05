@@ -39,8 +39,8 @@ routes
     // PatientData
     .get('/api/patient/data/:id', PatientDataController.getDataByUserId)
     .post('/api/patient/data', PatientDataController.createData) 
-    .put('/api/patient/data/:id', PatientDataController.updateData)
-    
+    .put('/api/patient/data', PatientDataController.updateData)
+    .put('/api/patient/data/professional', PatientDataController.insertProfissional)
     // Professional
     .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)
     .post('/api/professional/register', ProfessionalRegister.registerProfessional)
@@ -49,10 +49,10 @@ routes
     .get('/api/professional/patientdata/:id', ProfessionalController.getUserCuidadorId)
 
     // ProfessionalData
-    .get('/api/professional/data/:id', ProfessionalDataController.getDataByUserId)
+    .post('/api/professional/data/id', ProfessionalDataController.getDataByUserId)
     .post('/api/professional/data', ProfessionalDataController.createData) 
     .put('/api/professional/data', ProfessionalDataController.updateData)
-    .put('/api/professional/data/patient', ProfessionalDataController.insertPatient)
+    .put('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient)
 
     
 

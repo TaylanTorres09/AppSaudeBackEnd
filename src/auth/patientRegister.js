@@ -13,13 +13,16 @@ module.exports = {
     registerPatient: async (req, res, next) => {
         const { email, data } = req.body
         try {
-            if ( await Patient.findOne({ email })) {
+            var checkUser = await Patient.findOne({email: email })
+            if (checkUser) {
+                console.debug(checkUser)
+                checkUser = undefined;
                 return res.status(400).send({ message: 'User exists' });
             }
 
             const newPatient = new Patient(req.body);
             const user = await newPatient.save();
-            const newPatientData = new PatientData({patientId:  user._id, gender: "masc"});
+            const newPatientData = new PatientData({patient_id:  user._id, gender: "masc"});
             const data = await newPatientData.save();
 
             user.password = undefined;
