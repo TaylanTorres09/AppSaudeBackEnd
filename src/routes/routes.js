@@ -31,27 +31,29 @@ routes
     .get('/all/patient/test', [authJwt.verifyToken], ProfessionalController.getAll) // Rota protegida
 
     // Patient
-    .post('/api/patient/authentication', PatientAuth.loginPatient)
-    .post('/api/patient/register', PatientRegister.registerPatient)
+    .post('/api/patient/authentication', PatientAuth.loginPatient)//(v)
+    .post('/api/patient/register', PatientRegister.registerPatient)//(v)
     .get('/api/patient/:id', PatientController.getUserByID)
     .get('/api/patient', PatientController.getUserByEmail) // http://localhost:3000/api/patient?email=maods@maods.com
 
     // PatientData
-    .get('/api/patient/data/:id', PatientDataController.getDataByUserId)
+    .get('/api/patient/data/myprofile', PatientDataController.getDataByUserId)
     .post('/api/patient/data', PatientDataController.createData) 
     .put('/api/patient/data', PatientDataController.updateData)
-    .put('/api/patient/data/professional', PatientDataController.insertProfissional)
+    .put('/api/patient/data/professionalInsertion', PatientDataController.insertProfissional)// (v)
+    .post('/api/professional/data/myprofissional', PatientDataController.getProfissional) // (v)
     // Professional
-    .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)
-    .post('/api/professional/register', ProfessionalRegister.registerProfessional)
+    .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)//(v)
+    .post('/api/professional/register', ProfessionalRegister.registerProfessional)//(v)
     .get('/api/professional/:id', ProfessionalController.getUserByID)
     .get('/api/professional', ProfessionalController.getUserByEmail) // http://localhost:3000/api/professional?email=
     .get('/api/professional/patientdata/:id', ProfessionalController.getUserCuidadorId)
 
     // ProfessionalData
-    .post('/api/professional/data/id', ProfessionalDataController.getDataByUserId)
+    .post('/api/professional/data/myprofile', ProfessionalDataController.getDataByUserId) //(v)
+    .post('/api/professional/data/mypatients', ProfessionalDataController.getPatientes) // (v)
     .put('/api/professional/data', ProfessionalDataController.updateData)
-    .put('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient)
+    .put('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient) // (v)
 
     
 

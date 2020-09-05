@@ -1,19 +1,19 @@
 [
     {
-        "_comment": "CADASTRO PACIENTE  -> http://localhost:3000/api/patient/register",
+        "_comment": "CADASTRO PACIENTE  -> POST http://localhost:3000/api/patient/register",
         "firstName": "lucas",
         "lastName": "lucas",
         "email": "aaoi@gmail.com",
         "password": "lucas"
     },
     {
-        "_comment": "LOGIN PACIENTE  -> http://localhost:3000/api/patient/authentication",
+        "_comment": "LOGIN PACIENTE  -> POST http://localhost:3000/api/patient/authentication",
         "email": "maods@maods.com",
         "password": "maods"
     },
     
     {
-        "_comment": "CADASTRO CUIDADOR  -> http://localhost:3000/api/professional/register",
+        "_comment": "CADASTRO CUIDADOR  -> POST http://localhost:3000/api/professional/register",
         "firstName": "Dr Taylan",
         "lastName": "Silva",
         "Doc": "215806",
@@ -22,7 +22,7 @@
     },
 
     {
-        "_comment": "LOGIN CUIDADOR  -> http://localhost:3000/api/professional/authentication",
+        "_comment": "LOGIN CUIDADOR  -> POST http://localhost:3000/api/professional/authentication",
         "email": "tay@tay.com",
         "password": "maods"
     },
@@ -31,7 +31,7 @@
 
 
     {
-        "_comment": "INSERÇÃO PACIENTE PELO CUIDADOR  -> http://localhost:3000/api/professional/data/patientInsertion",
+        "_comment": "INSERÇÃO PACIENTE PELO CUIDADOR  -> PUT http://localhost:3000/api/professional/data/patientInsertion",
         "profissional_id": "5f53b2136bd5682a688896c2",
         "patient_id": "5f53afa4dc17030d24cdedc5"
     
@@ -39,11 +39,27 @@
 
 
     {
-        "_comment": "RETORNAR DADOS DO CUIDADOR ENVIANDO ID  -> http://localhost:3000/api/professional/data/patientInsertion",
+        "_comment": "RETORNAR DADOS DO CUIDADOR ENVIANDO ID  -> POST http://localhost:3000/api/professional/data/myprofile",
         "profissional_id": "5f53b2136bd5682a688896c2"
-    }
+    },
     
+    {
+        "_comment": "RETORNAR TODOS PACIENTES DO CUIDADOR ENVIANDO ID  -> POST http://localhost:3000/api/professional/data/mypatients",
+        "profissional_id": "5f53b2136bd5682a688896c2"
+    },
 
+
+    {
+        "_comment": "INSERÇÃO CUIDADOR PELO PACIENTE  -> PUT http://localhost:3000/api/patient/data/professionalInsertion",
+        "patient_id": "5f53e728e9031c0a10a34d22",
+        "profissional_id": "5f53e09cbca4642d3850ced1"
+    
+    },
+
+    {
+        "_comment": "RETORNAR TODOS CUIDADORES DO PACIENTE   ENVIANDO ID  -> POST  http://localhost:3000/api/professional/data/myprofissional",
+        "patient_id": "5f53e728e9031c0a10a34d22"
+    }
 
 
 

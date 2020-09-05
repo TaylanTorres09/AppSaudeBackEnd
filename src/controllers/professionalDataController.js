@@ -6,15 +6,43 @@ const Professional = require('../database/models/professional.model');
 const Patient = require('../database/models/patient.model')
 
 module.exports = {
+
     getDataByUserId: async (req, res) => {
         try {
-            console.debug(req.body)
-            const results = await ProfessionalData.
-                                    findOne({profissional_id: req.body.profissional_id}).
-                                    populate('patients').
-                                    populate('patients.patientData');
+            
+            const result = await ProfessionalData
+                            .findOne({profissional_id: req.body.profissional_id})
+                            .lean()
+                            .populate({ path: 'profissional_id'  })
 
-            return res.send(results);
+            return res.send(result);
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+
+    getPatientes: async (req, res) => {
+        try {
+            
+            await ProfessionalData
+                            .findOne({profissional_id: req.body.profissional_id})
+                            .lean()
+                            .populate({ path: 'patients', select: 'firstName patientData'  })
+                            .exec(function(err, docs) {
+                            
+                                var options = {
+                                path: 'patients.patientData',
+                                model: 'PatientData'
+                                };
+                            
+                                if (err) return res.json(500);
+                                ProfessionalData.populate(docs, options, function (err, projects) {
+                                res.json(projects);
+                                });
+                            });
+                                    // populate('patients');
+
+            // return res.send(results);
         } catch (error) {
             console.log(error.message);
         }

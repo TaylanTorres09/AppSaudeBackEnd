@@ -14,8 +14,9 @@ module.exports = {
 
             const newProfessional = new Professional(req.body);
             const user = await newProfessional.save();
-            const newProfessionalData = new ProfessionalData({profissional_id:  user._id});
+            const newProfessionalData = new ProfessionalData({ profissional_id: user._id });
             const data = await newProfessionalData.save();
+            const userUpdated = await Professional.findOneAndUpdate({ _id: user._id }, { profissionalData: data._id }, { new: true, useFindAndModify: false });
 
             user.password = undefined;
             const token = jwt.sign({ id: user.id }, secret, {
@@ -23,7 +24,7 @@ module.exports = {
             })
             res.send({ user, token });
         }
-        
+
         catch (error) {
             console.log(error.message);
             if (error.name === 'ValidationError') {

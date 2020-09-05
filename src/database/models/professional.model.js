@@ -15,6 +15,7 @@ const ProfissionalSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
+    profissionalData: {type:mongoose.Schema.Types.ObjectId, ref:'ProfissionalData'}
 
 });
 
