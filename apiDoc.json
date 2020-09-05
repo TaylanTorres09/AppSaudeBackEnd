@@ -17,13 +17,13 @@
         "firstName": "Dr Taylan",
         "lastName": "Silva",
         "Doc": "215806",
-        "emai": "tay@tay.com",
+        "email": "tay@tay.com",
         "password": "maods"
     },
 
     {
         "_comment": "LOGIN CUIDADOR  -> http://localhost:3000/api/professional/authentication",
-        "emai": "tay@tay.com",
+        "email": "tay@tay.com",
         "password": "maods"
     },
 

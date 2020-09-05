@@ -10,7 +10,7 @@ module.exports = {
     //Teste
     getAll: async (req, res, next) => {
         try {
-            const results = await PatientData.find().populate("patientId").exec();
+            const results = await PatientData.find().populate("patient_id").exec();
             // const results = await Product.find({}, { name: 1, price: 1, _id: 0 });
             // const results = await Product.find({ price: 699 }, {});
             res.send(results);

@@ -18,7 +18,7 @@ module.exports = {
     createData: async (req, res) => {
         try {
             const newPatientData = new PatientData(req.body);
-            const newUser = await Patient.findById(newPatientData.patientId).populate('PatientData');
+            const newUser = await Patient.findById(newPatientData.patient_id).populate('PatientData');
             console.log(newUser)
             
             if(newUser){

@@ -24,6 +24,6 @@ ProfissionalSchema.pre('save', async function (next) {
     next();
 })
 
-const Profissional = mongoose.model('Profissional', ProfissionalSchema,'profissional');
+const Profissional = mongoose.model('Profissional', ProfissionalSchema,'Profissional');
 
 module.exports = Profissional;

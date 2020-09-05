@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Professional = require('../database/models/professional.model');
 const PatientData = require('../database/models/patienteData.model');
 
+
 module.exports = {
     getAll: async (req, res, next) => {
         try {
