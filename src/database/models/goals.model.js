@@ -5,9 +5,9 @@ const GoalsSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    patientId:{ type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
+    patient_id:{ type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
 
-    profissionalId:{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional", required: true },
+    profissional_id:{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional", required: true },
 
     content: { type: String, required: true },
 

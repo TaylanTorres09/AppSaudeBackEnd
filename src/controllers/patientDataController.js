@@ -8,24 +8,43 @@ const Professional = require('../database/models/professional.model');
 module.exports = {
     getDataByUserId: async (req, res) => {
         try {
-            const results = await PatientData.findById(req.params.id);
+            const result = await PatientData
+                            .findOne({ patient_id: req.body.patient_id})
+                            .lean()
+                            .populate({ path: 'patient_id'  })
 
-            return res.send( results);
+            return res.send(result);
+
         } catch (error) {
             console.log(error.message);
-        }  
+        }
+    },
+    getProfissional: async (req, res) => {
+        try {
+            console.debug(req.body)
+            const results = await PatientData
+                .findOne({ patient_id: req.body.patient_id })
+                .select('profissionals')
+                .lean()
+                .populate({ path: 'profissionals' })
+
+
+            return res.send(results);
+        } catch (error) {
+            console.log(error.message);
+        }
     },
     createData: async (req, res) => {
         try {
             const newPatientData = new PatientData(req.body);
-            const newUser = await Patient.findById(newPatientData.patientId).populate('PatientData');
+            const newUser = await Patient.findById(newPatientData.patient_id).populate('PatientData');
             console.log(newUser)
-            
-            if(newUser){
+
+            if (newUser) {
                 const data = await newPatientData.save();
-                res.send({data})
-            }else{
-                res.status(403).send({message: 'Usuário nulo'})
+                res.send({ data })
+            } else {
+                res.status(403).send({ message: 'Usuário nulo' })
             }
         } catch (error) {
             console.log(error.message);
@@ -34,12 +53,32 @@ module.exports = {
     },
     updateData: async (req, res) => {
         try {
-            const data = await PatientData.findOneAndUpdate(req.params.id, req.body);
+            const { patient_Id } = req.body;
+            const filter = { patient_Id: patient_Id };
+            const data = await PatientData.findOneAndUpdate(filter, req.body, { new: true, useFindAndModify: false });
+            res.send({ data })
 
-            res.send({data})
+        } catch (error) {
+            console.log(error.message);
+            res.send('Erro')
+        }
+    },
+
+    insertProfissional: async (req, res) => {
+        try {
+            const { patient_id, profissional_id } = req.body;
+            const filter = { patient_id: patient_id };
+            const update = { "$push": { profissionals: profissional_id } };
+            console.debug(patient_id)
+            console.debug(profissional_id)
+            const data = await PatientData.findOneAndUpdate(filter, update, { new: true, useFindAndModify: false });
+
+            res.send({ data })
         } catch (error) {
             console.log(error.message);
             res.send('Erro')
         }
     }
+
+
 }

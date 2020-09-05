@@ -15,7 +15,8 @@ const ProfissionalSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    patientData: [{ type: mongoose.Schema.Types.ObjectId, ref: "ProfissionalData" }]
+    profissionalData: {type:mongoose.Schema.Types.ObjectId, ref:'ProfissionalData'}
+
 });
 
 ProfissionalSchema.pre('save', async function (next) {
@@ -24,6 +25,6 @@ ProfissionalSchema.pre('save', async function (next) {
     next();
 })
 
-const Profissional = mongoose.model('Profissional', ProfissionalSchema,'profissional');
+const Profissional = mongoose.model('Profissional', ProfissionalSchema,'Profissional');
 
 module.exports = Profissional;

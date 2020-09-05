@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Patient = require('../database/models/patient.model')
 const PatientData = require('../database/models/patienteData.model')
+
 const secret = 'f36e0a6c9e1011cfacd75f6ea0c96610'
 
 function generateAccessToken(user) {
@@ -10,17 +11,23 @@ function generateAccessToken(user) {
 
 module.exports = {
     registerPatient: async (req, res, next) => {
-        const { email, data } = req.body
+        const { email } = req.body
         try {
-            if ( await Patient.findOne({ email })) {
+
+            if (await Patient.findOne({ email: email })) {
                 return res.status(400).send({ message: 'User exists' });
             }
 
             const newPatient = new Patient(req.body);
             const user = await newPatient.save();
+            const newPatientData = new PatientData({ patient_id: user._id });
+            const data = await newPatientData.save();
+            const userUpdated = await Patient.findOneAndUpdate({ _id: user._id }, { patientData: data._id }, { new: true, useFindAndModify: false });
+            // user.patientData = data._id
             user.password = undefined;
             const token = generateAccessToken({ id: user.id });
             res.send({ user, token });
+
         } catch (error) {
             console.log(error.message);
             if (error.name === 'ValidationError') {

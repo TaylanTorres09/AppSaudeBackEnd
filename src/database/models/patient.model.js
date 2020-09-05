@@ -12,7 +12,7 @@ const PatientSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    professionalData: {type:mongoose.Schema.Types.ObjectId, ref:'professional'}
+    patientData: {type:mongoose.Schema.Types.ObjectId, ref:'PatientData'}
 });
 
 PatientSchema.pre('save', async function (next) {
@@ -21,5 +21,5 @@ PatientSchema.pre('save', async function (next) {
     next();
 })
 
-const Patient = mongoose.model('Patient', PatientSchema, 'patient');
+const Patient = mongoose.model('Patient', PatientSchema, 'Patient');
 module.exports = Patient;

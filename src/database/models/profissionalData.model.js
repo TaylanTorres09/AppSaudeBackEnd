@@ -3,17 +3,18 @@ const mongoose = require('mongoose');
 
 
 const ProfissionalDDataSchema = new mongoose.Schema({
-    gender: {  type: String, require: true, },
+    profissional_id: { type: mongoose.Schema.Types.ObjectId, ref: "Profissional",  required: true },
+    gender: {  type: String },
     
-    birth: { type: Date, required: true },
+    birth: { type: Date},
     // Add more kind of data  <-------------- Taylan // DArlan
 
 
 
-    patient: [{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" }],
+    patients: [{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" }],
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]
 });
 
 
-const ProfissionalData = mongoose.model('ProfissionalData', ProfissionalDDataSchema);
+const ProfissionalData = mongoose.model('ProfissionalData', ProfissionalDDataSchema,'ProfissionalData');
 module.exports = ProfissionalData;

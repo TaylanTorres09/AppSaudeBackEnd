@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const PatientDataSchema = new mongoose.Schema({
    
-    patientId: { type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
+    patient_id: { type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
 
     gender: {  type: String },
     
@@ -14,11 +14,11 @@ const PatientDataSchema = new mongoose.Schema({
     // Add more kind of data  <-------------- Taylan // DArlan
 
 
-    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "profissional" }],
+    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional" }],
     
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]
 });
 
-const PatientData = mongoose.model('PatientData', PatientDataSchema);
+const PatientData = mongoose.model('PatientData', PatientDataSchema,'PatientData');
 
 module.exports = PatientData;
