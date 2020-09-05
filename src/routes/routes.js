@@ -51,9 +51,10 @@ routes
     // ProfessionalData
     .get('/api/professional/data/:id', ProfessionalDataController.getDataByUserId)
     .post('/api/professional/data', ProfessionalDataController.createData) 
-    .put('/api/professional/data/:id', ProfessionalDataController.updateData)
+    .put('/api/professional/data', ProfessionalDataController.updateData)
+    .put('/api/professional/data/patient', ProfessionalDataController.insertPatient)
 
-
+    
 
 module.exports = routes
 

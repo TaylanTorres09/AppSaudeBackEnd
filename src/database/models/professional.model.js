@@ -15,7 +15,7 @@ const ProfissionalSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    patientData: [{ type: mongoose.Schema.Types.ObjectId, ref: "ProfissionalData" }]
+
 });
 
 ProfissionalSchema.pre('save', async function (next) {

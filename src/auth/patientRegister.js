@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Patient = require('../database/models/patient.model')
 const PatientData = require('../database/models/patienteData.model')
+
 const secret = 'f36e0a6c9e1011cfacd75f6ea0c96610'
 
 function generateAccessToken(user) {
@@ -18,6 +19,9 @@ module.exports = {
 
             const newPatient = new Patient(req.body);
             const user = await newPatient.save();
+            const newPatientData = new PatientData({patientId:  user._id, gender: "masc"});
+            const data = await newPatientData.save();
+
             user.password = undefined;
             const token = generateAccessToken({ id: user.id });
             res.send({ user, token });
