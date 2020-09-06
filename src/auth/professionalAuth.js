@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Professional = require('../database/models/professional.model')
-const secret = 'f36e0a6c9e1011cfacd75f6ea0c96610'
+const secret = require('../secret/secret.json')
 
 module.exports = {
     loginProfessional: async (req, res) => {
@@ -17,7 +17,7 @@ module.exports = {
 
         user.password = undefined
 
-        const token = jwt.sign({ id: user.id }, secret, {
+        const token = jwt.sign({ id: user.id }, secret.secret, {
             expiresIn: 86400
         })
 

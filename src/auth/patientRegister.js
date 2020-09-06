@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt')
 const Patient = require('../database/models/patient.model')
 const PatientData = require('../database/models/patienteData.model')
 
-const secret = 'f36e0a6c9e1011cfacd75f6ea0c96610'
+const secret = require('../secret/secret.json')
 
 function generateAccessToken(user) {
-    return jwt.sign(user, secret, { expiresIn: 86400 })
+    return jwt.sign(user, secret.secret, { expiresIn: 86400 })
 }
 
 module.exports = {

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Professional = require('../database/models/professional.model')
 const ProfessionalData = require('../database/models/profissionalData.model');
-const secret = 'f36e0a6c9e1011cfacd75f6ea0c96610'
+const secret = require('../secret/secret.json')
 
 module.exports = {
     registerProfessional: async (req, res) => {
@@ -19,7 +19,7 @@ module.exports = {
             const userUpdated = await Professional.findOneAndUpdate({ _id: user._id }, { profissionalData: data._id }, { new: true, useFindAndModify: false });
 
             user.password = undefined;
-            const token = jwt.sign({ id: user.id }, secret, {
+            const token = jwt.sign({ id: user.id }, secret.secret, {
                 expiresIn: 86400
             })
             res.send({ user, token });

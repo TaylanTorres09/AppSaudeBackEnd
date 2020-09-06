@@ -16,7 +16,9 @@ const PatientDataSchema = new mongoose.Schema({
 
     profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional" }],
     
-    goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]
+    goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }],
+
+    daily: [{ type: mongoose.Schema.Types.ObjectId, ref: "Daily" }],
 });
 
 const PatientData = mongoose.model('PatientData', PatientDataSchema,'PatientData');

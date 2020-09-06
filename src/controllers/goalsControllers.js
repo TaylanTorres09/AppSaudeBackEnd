@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const Goals = require('../database/models/goals.model');
 const Patient = require('../database/models/patient.model');
+const PatientData = require('../database/models/patienteData.model');
 const Professional = require('../database/models/professional.model');
 
 module.exports = {
