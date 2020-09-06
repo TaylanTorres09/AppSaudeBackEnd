@@ -23,6 +23,7 @@ const ProfessionalDataController = require('../controllers/professionalDataContr
 
 routes
     // Users - Patient
+    .get('/', PatientController.getAll)
     .get('/all/patient', PatientController.getAll)
     .get('/all/patient/test', [authJwt.verifyToken], PatientController.getAll) // Rota protegida
 
