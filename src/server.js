@@ -5,7 +5,7 @@ const cors = require('cors');
 // Initialize DB
 require('./database/initDB')();
 
-const port =  3000 || process.env.PORT;
+//const port =  3000 || process.env.PORT;
 
 const app = express();
 
@@ -29,4 +29,4 @@ app.use((error, req, res, next) => {
 })
 
 
-app.listen(port, () =>  console.log('Server is running'))
+app.listen(process.env.PORT, () =>  console.log('Server is running'))
