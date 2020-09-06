@@ -28,5 +28,6 @@ app.use((error, req, res, next) => {
   res.json({ error: error.message})
 })
 
+console.log(process.env.PORT)
 
 app.listen(process.env.PORT, () =>  console.log('Server is running'))
