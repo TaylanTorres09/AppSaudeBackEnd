@@ -20,6 +20,9 @@ const ProfessionalRegister = require('../auth/professionalRegister')
 //ProfessionalData
 const ProfessionalDataController = require('../controllers/professionalDataController')
 
+//DailyAssessment
+const DailyAssessment = require('../controllers/dailyAssesemntController')
+
 
 routes
     // Users - Patient
@@ -55,6 +58,11 @@ routes
     .post('/api/professional/data/mypatients', ProfessionalDataController.getPatientes) // (v)
     .put('/api/professional/data', ProfessionalDataController.updateData)
     .put('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient) // (v)
+
+    //dailyAssessment
+    .get('/api/daily/assessment/all', DailyAssessment.getAll)
+    .put('/api/daily/assessment/updaily', DailyAssessment.updateDaily)
+    .post('/api/daily/assessment/newdaily', DailyAssessment.create)
 
     
 
