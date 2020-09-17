@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const dailyAssessmentSchema = new mongoose.Schema({
 
-    createdAt: { type: Date.now, default: Date.now, },
+    createdAt: { type: Date, default: Date.now, },
 
     patientId:{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" },
 
