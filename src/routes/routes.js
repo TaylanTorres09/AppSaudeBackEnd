@@ -23,6 +23,9 @@ const ProfessionalDataController = require('../controllers/professionalDataContr
 //DailyAssessment
 const DailyAssessment = require('../controllers/dailyAssesemntController')
 
+//Goals
+const Goals = require('../controllers/goalsControllers')
+
 
 routes
     // Users - Patient
@@ -41,11 +44,12 @@ routes
     .get('/api/patient', PatientController.getUserByEmail) // http://localhost:3000/api/patient?email=maods@maods.com
 
     // PatientData
-    .get('/api/patient/data/myprofile', PatientDataController.getDataByUserId)
+    .get('/api/patient/data/myprofile', PatientDataController.getDataByUserId) // Rota para retornar o perfil.
     .post('/api/patient/data', PatientDataController.createData) 
-    .put('/api/patient/data', PatientDataController.updateData)
+    .put('/api/patient/data/upmyprofile', PatientDataController.updateData)// Atualizar dados
     .put('/api/patient/data/professionalInsertion', PatientDataController.insertProfissional)// (v)
     .post('/api/professional/data/myprofissional', PatientDataController.getProfissional) // (v)
+
     // Professional
     .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)//(v)
     .post('/api/professional/register', ProfessionalRegister.registerProfessional)//(v)
@@ -60,9 +64,14 @@ routes
     .put('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient) // (v)
 
     //dailyAssessment
-    .get('/api/daily/assessment/all', DailyAssessment.getAll)
+    .get('/api/daily/assessment/user', DailyAssessment.getDailyByUserID)
     .put('/api/daily/assessment/updaily', DailyAssessment.updateDaily)
     .post('/api/daily/assessment/newdaily', DailyAssessment.create)
+
+    //goals
+    .get('/api/goals/id', Goals.getAllGoalsByUserId)
+    .put('/api/goals/insert/profissional', Goals.insertProfissional)
+    .put('/api/goals/up', Goals.updateGoal)
 
     
 

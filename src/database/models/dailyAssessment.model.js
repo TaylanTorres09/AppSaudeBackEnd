@@ -5,7 +5,9 @@ const dailyAssessmentSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    patientId:{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" },
+    patient_id: { type: mongoose.Schema.Types.ObjectId, ref: "Patient"},
+
+    patientdata_id:{ type: mongoose.Schema.Types.ObjectId, ref: "PatientData" },
 
     pain: {  type: Boolean, }, //Question 01
 
@@ -16,8 +18,6 @@ const dailyAssessmentSchema = new mongoose.Schema({
     painAverage: {  type: Number,  }, //Question 04
 
     moodInfluence: {  type: Number,  }, //Question 05
-
-    moodInfluence: {  type: Number,  }, //Question 06
 
     influenceRelationship: {  type: Number,  }, //Question 07
 
@@ -33,7 +33,7 @@ const dailyAssessmentSchema = new mongoose.Schema({
 
 
 
-const DailyAssessement = mongoose.model('DailyAssessement', dailyAssessmentSchema);
+const DailyAssessement = mongoose.model('DailyAssessement', dailyAssessmentSchema, 'DailyAssessement');
 
 
 // ----------------------- patient data---------------------------

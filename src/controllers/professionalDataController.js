@@ -72,6 +72,6 @@ module.exports = {
             console.log(error.message);
             res.send('Erro')
         }
-    }
+    },
 
 }
