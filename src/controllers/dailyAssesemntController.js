@@ -32,14 +32,14 @@ module.exports = {
     },
 
     create: async (req, res) => {
-        const {patientdata_id}  = req.body;
+        const {patient_id}  = req.body;
         try {
             const newDaily = new Daily(req.body);
             //const filter = { patient_id: req.body.patient_id };
             const daily = await newDaily.save();
             const update =  { "$set": {daily: daily._id} };
            // console.debug(patient_id)
-            const data = await PatientData.findByIdAndUpdate(patientdata_id, update, {useFindAndModify: false})
+            const data = await PatientData.findOneAndUpdate({patient_id}, update, {useFindAndModify: false})
                     
             res.send({data, daily})
         } catch (error) {

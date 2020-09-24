@@ -51,7 +51,7 @@ module.exports = {
     deleteGoal: async (req, res) => {
         try {
             const {patient_id} = req.body;
-            const results = await Goals.findOneAndDelete({patient_id});
+            const results = await Goals.findOneAndDelete({patient_id}, {useFindAndModify:false});
             res.send( results);
         } catch (error) {
             console.log(error.message);
