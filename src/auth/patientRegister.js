@@ -26,7 +26,8 @@ module.exports = {
             // user.patientData = data._id
             user.password = undefined;
             const token = generateAccessToken({ id: user.id });
-            res.send({ user, token });
+            const role =  "Pacient"
+            res.send({ user, token, role });
 
         } catch (error) {
             console.log(error.message);
