@@ -11,17 +11,21 @@ const dailyAssessmentSchema = new mongoose.Schema({
 
     pain: {  type: Boolean, }, //Question 01
 
-    painLocation: {  type: Number,  }, //Question 02
+    painLocation: [{  type: Number,  }], //Question 02
 
     worstPain: {  type: Number,  }, //Question 03
     
     painAverage: {  type: Number,  }, //Question 04
 
     moodInfluence: {  type: Number,  }, //Question 05
+    
+    habitualActivities: {  type: Number,  }, //Question 05
 
     influenceRelationship: {  type: Number,  }, //Question 07
 
     sleep: {  type: Number,  }, //Question 08
+    
+    sexBehavior: {  type: Number,  }, //Question 09
 
     selfEsteem: {  type: Number,  }, //Question 09
 
