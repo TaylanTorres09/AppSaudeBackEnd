@@ -23,9 +23,9 @@ module.exports = {
 
     getPatientes: async (req, res) => {
         try {
-            
+            const {profissional_id} = req.body;
             await ProfessionalData
-                            .findOne({profissional_id: req.body.profissional_id})
+                            .findOne({profissional_id: profissional_id})
                             .lean()
                             .populate({ path: 'patients', select: 'firstName patientData'  })
                             .exec(function(err, docs) {
@@ -64,7 +64,7 @@ module.exports = {
         try {
             const { profissional_id, patient_id } = req.body;
             const filter = { profissional_id: profissional_id };
-            const update = { "$push": { patients: patient_id } };
+            const update = { "$set": { patients: patient_id } };
             const data = await ProfessionalData.findOneAndUpdate(filter, update, { new: true, useFindAndModify: false });
 
             res.send({data})
