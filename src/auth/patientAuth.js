@@ -17,11 +17,11 @@ module.exports = {
             return res.status(400).send({ message: 'Email or password is wrong' });
 
         user.password = undefined
-
+        user.role = "Pacient"
         const token = jwt.sign({ id: user.id }, secret.secret, {
             expiresIn: 86400
         })
-
-        res.send({ user, token })
+        const role =  "Pacient"
+        res.send({ user, token, role })
     }
 }

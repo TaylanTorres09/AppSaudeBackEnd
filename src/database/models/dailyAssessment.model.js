@@ -18,10 +18,14 @@ const dailyAssessmentSchema = new mongoose.Schema({
     painAverage: {  type: Number,  }, //Question 04
 
     moodInfluence: {  type: Number,  }, //Question 05
+    
+    habitualActivities: {  type: Number,  }, //Question 05
 
     influenceRelationship: {  type: Number,  }, //Question 07
 
     sleep: {  type: Number,  }, //Question 08
+    
+    sexBehavior: {  type: Number,  }, //Question 09
 
     selfEsteem: {  type: Number,  }, //Question 09
 

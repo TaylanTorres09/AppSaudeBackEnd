@@ -9,7 +9,9 @@ const Professional = require('../database/models/professional.model');
 module.exports = {
     getDailyByUserID: async (req, res) => {
         try {
-            const results = await Daily.find({patient_id: req.body.id});
+            const now = new Date();
+            const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const results = await Daily.find({patient_id: req.body.id, created_on: {$gte: startOfToday}});
             return res.send( results);
         } catch (error) {
             console.log(error.message);

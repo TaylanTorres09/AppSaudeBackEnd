@@ -22,7 +22,8 @@ module.exports = {
             const token = jwt.sign({ id: user.id }, secret.secret, {
                 expiresIn: 86400
             })
-            res.send({ user, token });
+            const role = "Professional" 
+            res.send({ user, token, role });
         }
 
         catch (error) {
