@@ -37,9 +37,8 @@ module.exports = {
             const daily = await newDaily.save();
             const update =  { "$set": {daily: daily._id} };
            // console.debug(patient_id)
-            const data = await PatientData.findByIdAndUpdate(patientdata_id, update)
+            const data = await PatientData.findByIdAndUpdate(patientdata_id, update, {useFindAndModify: false})
                     
-            data.save()
             res.send({data, daily})
         } catch (error) {
             console.log(error.message);

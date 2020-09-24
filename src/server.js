@@ -30,4 +30,4 @@ app.use((error, req, res, next) => {
 
 console.log(process.env.PORT)
 
-app.listen(process.env.PORT || 3000, () =>  console.log('Server is running'))
+app.listen(process.env.PORT || 3030, () =>  console.log('Server is running'))

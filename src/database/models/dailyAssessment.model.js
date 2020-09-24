@@ -11,7 +11,7 @@ const dailyAssessmentSchema = new mongoose.Schema({
 
     pain: {  type: Boolean, }, //Question 01
 
-    painLocation: {  type: Number,  }, //Question 02
+    painLocation: {  type: Array,  }, //Question 02
 
     worstPain: {  type: Number,  }, //Question 03
     
