@@ -54,8 +54,9 @@ routes
     .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)//(v)
     .post('/api/professional/register', ProfessionalRegister.registerProfessional)//(v)
     .get('/api/professional/:id', ProfessionalController.getUserByID)
-    .get('/api/professional', ProfessionalController.getUserByEmail) // http://localhost:3000/api/professional?email=
-    .get('/api/professional/patientdata/:id', ProfessionalController.getUserCuidadorId)
+    .get('/api/professional/email', ProfessionalController.getUserByEmail) // http://localhost:3000/api/professional?email=
+    .get('/api/professional/patientdata', ProfessionalController.getUserCuidadorId)
+    .get('/api/professional', ProfessionalController.getAll)
 
     // ProfessionalData
     .get('/api/professional/data/myprofile', ProfessionalDataController.getDataByUserId) //(v)

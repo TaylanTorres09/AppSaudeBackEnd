@@ -21,7 +21,7 @@ module.exports = {
         try {
             const { patient_id } = req.body;
             //const {createdAt} = Date.now;
-            const data = await Daily.findByIdAndUpdate({patient_id}, req.body, { new: true, 
+            const data = await Daily.findOneAndUpdate({patient_id}, req.body, { new: true, 
                                                                                 useFindAndModify: false });
             res.send({ data })
 
