@@ -64,9 +64,9 @@ routes
     .post('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient) // (v)
 
     //dailyAssessment
-    .get('/api/daily/assessment/user', DailyAssessment.getDailyByUserID)
+    .post('/api/daily/assessment/user', DailyAssessment.getDailyByUserID)
     .put('/api/daily/assessment/updaily', DailyAssessment.updateDaily)
-    .post('/api/daily/assessment/newdaily', DailyAssessment.create)
+    .put('/api/daily/assessment/newdaily', DailyAssessment.create)
 
     //goals
     .get('/api/goals/userid', Goals.getAllGoalsByUserId)
