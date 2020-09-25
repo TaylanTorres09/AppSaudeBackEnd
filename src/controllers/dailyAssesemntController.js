@@ -1,5 +1,7 @@
+const moment= require('moment') 
 const createError = require('http-errors');
 const mongoose = require('mongoose');
+
 
 const Daily = require('../database/models/dailyAssessment.model');
 const Patient = require('../database/models/patient.model');
@@ -9,9 +11,13 @@ const Professional = require('../database/models/professional.model');
 module.exports = {
     getDailyByUserID: async (req, res) => {
         try {
-            const now = new Date();
-            const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            const results = await Daily.find({patient_id: req.body.id, created_on: {$gte: startOfToday}});
+            // start today
+            var start = moment().startOf('day');
+            // end today
+            var end = moment(Date.now()).endOf('day');
+            
+            const results = await Daily.find({patient_id: req.body.patient_id, createdAt: { '$gte': start, '$lte': end }});
+          
             return res.send( results);
         } catch (error) {
             console.log(error.message);
@@ -20,9 +26,13 @@ module.exports = {
     updateDaily: async (req, res) => {
         try {
             const { patient_id } = req.body;
-            //const {createdAt} = Date.now;
-            const data = await Daily.findOneAndUpdate({patient_id}, req.body, { new: true, 
-                                                                                useFindAndModify: false });
+            var start = moment().startOf('day');
+            var end = moment(Date.now()).endOf('day');
+            
+            const data = await Daily.findOneAndUpdate({
+                patient_id: patient_id, createdAt: 
+                { '$gte': start, '$lte': end }}, req.body, { new: true, useFindAndModify: false });
+
             res.send({ data })
 
         } catch (error) {

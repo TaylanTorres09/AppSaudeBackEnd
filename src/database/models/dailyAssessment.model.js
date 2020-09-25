@@ -21,7 +21,7 @@ const dailyAssessmentSchema = new mongoose.Schema({
     
     habitualActivities: {  type: Number,  }, //Question 05
 
-    influenceRelationship: {  type: Number,  }, //Question 07
+    influenceRelationship: {  type: Boolean,  }, //Question 07
 
     sleep: {  type: Number,  }, //Question 08
     
