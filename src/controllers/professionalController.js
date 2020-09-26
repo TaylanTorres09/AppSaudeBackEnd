@@ -29,8 +29,9 @@ module.exports = {
     },
     getUserByEmail: async (req, res) => {
         try {
-            const end = req.query.email;
-            const results = await Professional.findOne({email: end});
+            const {email} = req.body;
+            console.log(email)
+            const results = await Profissional.findOne({email: email});
             return res.json(results);
 
         } catch (error) {

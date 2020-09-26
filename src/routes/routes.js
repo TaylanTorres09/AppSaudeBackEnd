@@ -48,13 +48,13 @@ routes
     .post('/api/patient/data', PatientDataController.createData) 
     .put('/api/patient/data/upmyprofile', PatientDataController.updateData)// Atualizar dados
     .put('/api/patient/data/professionalInsertion', PatientDataController.insertProfissional)// (v)
-    .post('/api/professional/data/myprofissional', PatientDataController.getProfissional) // (v)
+    .post('/api/patient/data/myprofissional', PatientDataController.getProfissional) // (v)
 
     // Professional
     .post('/api/professional/authentication', ProfessionalAuth.loginProfessional)//(v)
     .post('/api/professional/register', ProfessionalRegister.registerProfessional)//(v)
     .get('/api/professional/:id', ProfessionalController.getUserByID)
-    .get('/api/professional/email', ProfessionalController.getUserByEmail) // http://localhost:3000/api/professional?email=
+    .post('/api/professional/email', ProfessionalController.getUserByEmail) // http://localhost:3000/api/professional?email=
     .get('/api/professional/patientdata', ProfessionalController.getUserCuidadorId)
     .get('/api/professional', ProfessionalController.getAll)
 

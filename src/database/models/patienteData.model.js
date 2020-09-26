@@ -44,7 +44,7 @@ const PatientDataSchema = new mongoose.Schema({
     },
 
 
-    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional" }],
+    profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional", unique: true }],
     
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }],
 
