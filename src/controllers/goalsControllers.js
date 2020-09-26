@@ -29,7 +29,7 @@ module.exports = {
         }
     },
 
-    insertProfissional: async (req, res) => {
+    insertGoal: async (req, res) => {
         try {
             const newGoals = new Goals(req.body);
             const goals = await newGoals.save();

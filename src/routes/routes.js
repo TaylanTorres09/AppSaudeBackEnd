@@ -62,7 +62,7 @@ routes
     .get('/api/professional/data/myprofile', ProfessionalDataController.getDataByUserId) //(v)
     .get('/api/professional/data/mypatients', ProfessionalDataController.getPatientes) // (v)
     .put('/api/professional/data', ProfessionalDataController.updateData)
-    .post('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient) // (v)
+    .post('/api/professional/data/patientInsertion', ProfessionalDataController.insertPatient)
 
     //dailyAssessment
     .post('/api/daily/assessment/user', DailyAssessment.getDailyByUserID)
@@ -71,7 +71,7 @@ routes
 
     //goals
     .get('/api/goals/userid', Goals.getAllGoalsByUserId)
-    .post('/api/goals/insert/profissional', Goals.insertProfissional)
+    .post('/api/goals/insert/profissional', Goals.insertGoal)
     .put('/api/goals/up', Goals.updateGoal)
     .delete('/api/goals/delete', Goals.deleteGoal)
 
