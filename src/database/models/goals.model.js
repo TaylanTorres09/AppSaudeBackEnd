@@ -1,6 +1,20 @@
 const mongoose = require('mongoose');
 
 
+
+
+const CheckSchema = new mongoose.Schema({
+
+    createdAt: { type: Date, default: Date.now, },
+
+    meta_id:{ type: mongoose.Schema.Types.ObjectId, ref: "Goals", required: true },
+
+    active:{ type:Boolean, required: true, default:true },
+});
+
+const Check = mongoose.model('Check', CheckSchema,'Check');
+
+
 const GoalsSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
@@ -11,13 +25,15 @@ const GoalsSchema = new mongoose.Schema({
 
     content: { type: String, required: true },
 
-    completed: { type: Boolean, require: true, default: false}
+    // completed: { type: Boolean, require: true, default: false}
+
+    checks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Check", required: true }]
 
 });
 
 
 
-const Goals = mongoose.model('Goals', GoalsSchema);
+const Goals = mongoose.model('Goals', GoalsSchema,'Goals');
 
 
 // ----------------------- patient data---------------------------

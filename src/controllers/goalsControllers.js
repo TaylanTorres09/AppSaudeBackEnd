@@ -29,13 +29,13 @@ module.exports = {
         }
     },
 
-    insertProfissional: async (req, res) => {
+    insertGoals: async (req, res) => {
         try {
             const newGoals = new Goals(req.body);
             const goals = await newGoals.save();
             const { patient_id, profissional_id } = req.body;
             const filter = { patient_id: patient_id };
-            const update = { "$set": { profissionals: profissional_id, goals: goals._id } };
+            const update = { "$addToSet": { profissionals: profissional_id, goals: goals._id } };
             console.debug(patient_id)
             console.debug(profissional_id)
             const data = await PatientData.findOneAndUpdate(filter, update, { new: true, 

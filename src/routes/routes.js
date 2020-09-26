@@ -71,7 +71,7 @@ routes
 
     //goals
     .get('/api/goals/userid', Goals.getAllGoalsByUserId)
-    .post('/api/goals/insert/profissional', Goals.insertProfissional)
+    .post('/api/goals/profissional/insert', Goals.insertGoals)
     .put('/api/goals/up', Goals.updateGoal)
     .delete('/api/goals/delete', Goals.deleteGoal)
 
