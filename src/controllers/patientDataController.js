@@ -7,12 +7,12 @@ const Profissional = require('../database/models/professional.model');
 
 
 module.exports = {
-    getDataByUserId: async (req, res) => {
+    getDataByUserId: async(req, res) => {
         try {
             const result = await PatientData
-                            .findOne({ patient_id: req.body.patient_id})
-                            .lean()
-                            .populate({ path: 'patient_id'  })
+                .findOne({ patient_id: req.body.patient_id })
+                .lean()
+                .populate({ path: 'patient_id' })
 
             return res.send(result);
 
@@ -20,7 +20,7 @@ module.exports = {
             console.log(error.message);
         }
     },
-    getProfissional: async (req, res) => {
+    getProfissional: async(req, res) => {
         try {
             console.debug(req.body)
             const results = await PatientData
@@ -35,7 +35,7 @@ module.exports = {
             console.log(error.message);
         }
     },
-    createData: async (req, res) => {
+    createData: async(req, res) => {
         try {
             const newPatientData = new PatientData(req.body);
             const newUser = await Patient.findById(newPatientData.patient_id).populate('PatientData');
@@ -52,11 +52,19 @@ module.exports = {
             res.send('Erro')
         }
     },
-    updateData: async (req, res) => {
+    updateData: async(req, res) => {
         try {
-            const { patient_Id } = req.body;
-            const filter = { patient_Id: patient_Id };
-            const data = await PatientData.findOneAndUpdate(filter, req.body, { new: true, useFindAndModify: false });
+            if (req.body.weight && req.body.height) {
+                var imc = req.body.weight / req.body.height ** 2
+                req.body.imc = imc.toFixed(2)
+            }
+            const { patient_id, ...rest } = req.body;
+
+            console.log(rest)
+            const filter = { patient_id: patient_id };
+            const data = await PatientData.findOneAndUpdate(filter, rest, { new: true, useFindAndModify: false });
+            console.log(data)
+
             res.send({ data })
 
         } catch (error) {
@@ -65,12 +73,12 @@ module.exports = {
         }
     },
 
-    insertProfissional: async (req, res) => {
+    insertProfissional: async(req, res) => {
         try {
             const { patient_id } = req.body;
 
-            const {email} = req.body;
-            const { _id } = await Profissional.findOne({email: email});
+            const { email } = req.body;
+            const { _id } = await Profissional.findOne({ email: email });
 
             const filter = { patient_id: patient_id };
             const update = { "$push": { profissionals: _id } };

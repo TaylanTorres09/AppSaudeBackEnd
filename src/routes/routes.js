@@ -44,9 +44,9 @@ routes
     .get('/api/patient', PatientController.getUserByEmail) // http://localhost:3000/api/patient?email=maods@maods.com
 
     // PatientData
-    .get('/api/patient/data/myprofile', PatientDataController.getDataByUserId) // Rota para retornar o perfil.
+    .post('/api/patient/data/myprofile', PatientDataController.getDataByUserId) // Rota para retornar o perfil.
     .post('/api/patient/data', PatientDataController.createData) 
-    .put('/api/patient/data/upmyprofile', PatientDataController.updateData)// Atualizar dados
+    .put('/api/patient/data/updateMyprofile', PatientDataController.updateData)// Atualizar dados
     .put('/api/patient/data/professionalInsertion', PatientDataController.insertProfissional)// (v)
     .post('/api/patient/data/myprofissional', PatientDataController.getProfissional) // (v)
 

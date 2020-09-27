@@ -12,27 +12,27 @@ const PatientDataSchema = new mongoose.Schema({
     
     lastName: { type: String, required: true },
     
-    gender: { type: String },
+    gender: { type: String,  default: ''},
 
     birth: { type: Date },
     // Add more kind of data  <-------------- Taylan // DArlan
 
-    profession: { type: String },
+    occupation: { type: String, default: '' },
 
-    state: { type: String },
+    state: { type: String, default: '' },
 
-    city: { type: String },
+    city: { type: String, default: '' },
 
-    weight: { type: Number },
+    weight: { type: Number, default: null },
 
-    height: { type: Number },
+    height: { type: Number, default: null },
 
-    imc: {type: Number},
+    imc: {type: Number, default: null},
 
     // Enumerar para ficar mais fácil.
-    bloodtype: { type: String, enum: ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"] },
+    bloodtype: { type: String, enum: ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-", "Não Sabe"], default: "Não Sabe" },
 
-    condition: { type: String },
+    condition: { type: String, default: '' },
 
     yeardiagnosis: {
         diagnosis: { type: Boolean, enum: ["SIM", "NÃO"] },
