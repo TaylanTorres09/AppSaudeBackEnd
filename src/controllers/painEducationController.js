@@ -6,17 +6,28 @@ module.exports = {
             const newPainEducation = new painEducationModel(req.body);
             const painEducation = newPainEducation.save();
 
-            res.send({painEducation});
+            res.send({ painEducation });
         } catch (error) {
             console.log(error)
         }
+    },
+
+
+    allNews: async(req, res) => {
+        try {
+            const results = await painEducationModel.find();
+            res.send(results);
+        } catch (error) {
+            console.log(error.message);
+        }
+
     },
 
     updateNews: async(req, res) => {},
 
     deleteNews: async(req, res) => {},
 
-    allNews: async(req, res) => {},
+
 
     updateImage: async(req, res) => {},
 

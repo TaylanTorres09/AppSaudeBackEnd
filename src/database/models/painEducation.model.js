@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 
 const painEducationSchema = new mongoose.Schema({
-    name: {type: String},
+    name: { type: String },
 
-    description: {type: String},
+    description: { type: String },
 
-    image: {
-        size: {type: Number},
-        hash: {type: String},
-        url: {type: String} 
-    },
+    image: { type: String },
 
-    link: {type: String},
+    link: { type: String },
 
     createdAt: {
         type: Date,
