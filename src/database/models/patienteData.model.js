@@ -5,52 +5,57 @@ const mongoose = require('mongoose');
 
 
 const PatientDataSchema = new mongoose.Schema({
-   
+
     patient_id: { type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
 
-    gender: {  type: String },
+    firstName: {  type: String, require: true },
     
-    birth: { type: Date},
+    lastName: { type: String, required: true },
+    
+    gender: { type: String },
+
+    birth: { type: Date },
     // Add more kind of data  <-------------- Taylan // DArlan
 
-    profession: {type: String},
+    profession: { type: String },
 
-    state: {type: String},
+    state: { type: String },
 
-    city: {type: String},
+    city: { type: String },
 
-    imc: {
-        weight: {type: Number},
-        height: {type: Number}
-    },
+    weight: { type: Number },
+
+    height: { type: Number },
+
+    imc: {type: Number},
 
     // Enumerar para ficar mais fácil.
-    bloodtype: {type: String, enum: ["O+", "O-", "A+", "A-","B+","B-","AB+","AB-"]},
+    bloodtype: { type: String, enum: ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"] },
 
-    condicion: {type: String},
+    condition: { type: String },
 
-    yeardiagnosis:{
-        diagnosis: {type: Boolean, enum:["SIM", "NÃO"]},
-        year: {type:Date}
+    yeardiagnosis: {
+        diagnosis: { type: Boolean, enum: ["SIM", "NÃO"] },
+        year: { type: Date }
     },
 
-    otherdisease: { type: String},
+    otherdisease: { type: String },
 
-    field: {type: String},
+    field: { type: String },
 
     posologia: {
-        dose: {type: String},
-        frequency: {type: String}
+        dose: { type: String },
+        frequency: { type: String }
     },
 
 
     profissionals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Profissional", unique: true }],
-    
+
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }],
 
     daily: [{ type: mongoose.Schema.Types.ObjectId, ref: "DailyAssessement" }],
 });
 
-const PatientData = mongoose.model('PatientData', PatientDataSchema,'PatientData');
+const PatientData = mongoose.model('PatientData', PatientDataSchema, 'PatientData');
 
 module.exports = PatientData;

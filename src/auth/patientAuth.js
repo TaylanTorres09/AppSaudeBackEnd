@@ -3,22 +3,29 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Patient = require('../database/models/patient.model')
 const secret = require('../secret/secret.json')
+const PatientData = require('../database/models/patienteData.model');
 
 module.exports = {
 
     loginPatient: async (req, res) => {
         const { email, password } = req.body;
-        const user = await Patient.findOne({ email }).select('+password')
+        const result = await Patient.findOne({ email }).select('+password')
 
-        if (!user)
+        if (!result)
             return res.status(400).send({ message: 'User not found' })
 
-        if (!await bcrypt.compare(password, user.password))
+        if (!await bcrypt.compare(password, result.password))
             return res.status(400).send({ message: 'Email or password is wrong' });
 
-        user.password = undefined
-        user.role = "Pacient"
-        const token = jwt.sign({ id: user.id }, secret.secret, {
+        const user = await PatientData
+            .findOne({ patient_id: result._id})
+            .lean()
+            .populate({ path: 'patient_id'  })
+
+      
+
+        result.password = undefined
+        const token = jwt.sign({ id: result._id }, secret.secret, {
             expiresIn: 86400
         })
         const role =  "Pacient"

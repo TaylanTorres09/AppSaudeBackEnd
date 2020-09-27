@@ -11,16 +11,16 @@ function generateAccessToken(user) {
 
 module.exports = {
     registerPatient: async (req, res, next) => {
-        const { email } = req.body
+        const { firstName, lastName, email, password } = req.body
         try {
 
             if (await Patient.findOne({ email: email })) {
                 return res.status(400).send({ message: 'User exists' });
             }
 
-            const newPatient = new Patient(req.body);
+            const newPatient = new Patient({  email: email, password: password });
             const user = await newPatient.save();
-            const newPatientData = new PatientData({ patient_id: user._id });
+            const newPatientData = new PatientData({ patient_id: user._id, firstName: firstName, lastName: lastName });
             const data = await newPatientData.save();
             const userUpdated = await Patient.findOneAndUpdate({ _id: user._id }, { patientData: data._id }, { new: true, useFindAndModify: false });
             // user.patientData = data._id
