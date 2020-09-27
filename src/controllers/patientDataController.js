@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 const PatientData = require('../database/models/patienteData.model');
 const Patient = require('../database/models/patient.model');
-const Professional = require('../database/models/professional.model');
+const Profissional = require('../database/models/professional.model');
+
 
 module.exports = {
     getDataByUserId: async (req, res) => {
@@ -66,11 +67,13 @@ module.exports = {
 
     insertProfissional: async (req, res) => {
         try {
-            const { patient_id, profissional_id } = req.body;
+            const { patient_id } = req.body;
+
+            const {email} = req.body;
+            const { _id } = await Profissional.findOne({email: email});
+
             const filter = { patient_id: patient_id };
-            const update = { "$push": { profissionals: profissional_id } };
-            console.debug(patient_id)
-            console.debug(profissional_id)
+            const update = { "$push": { profissionals: _id } };
             const data = await PatientData.findOneAndUpdate(filter, update, { new: true, useFindAndModify: false });
 
             res.send({ data })
