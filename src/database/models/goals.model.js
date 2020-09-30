@@ -1,11 +1,8 @@
-const moment = require('moment');
+const moment = require('moment-timezone');
 const mongoose = require('mongoose');
 
-//moment.tz(new Date, 'America/Sao_Paulo')
-
-//date.toLocaleString('pt-br', {timezone: 'Brazil/brt'})
 const CheckSchema = new mongoose.Schema({
-    createdAt: {type:Date, default: moment.unix(1601170982).utc(true)},
+    createdAt: {type:Date, default: moment.tz("America/Sao_Paulo").utc(true)},
 
     meta_id:{ type: mongoose.Schema.Types.ObjectId, ref: "Goals", required: true },
 

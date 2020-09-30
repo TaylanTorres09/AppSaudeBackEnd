@@ -16,7 +16,8 @@ module.exports = {
             // end today
             var end = moment(Date.now()).endOf('day');
             
-            const results = await Daily.find({patient_id: req.body.patient_id, createdAt: { '$gte': start, '$lte': end }});
+            const results = await Daily.find({patient_id: req.body.patient_id, 
+                                                createdAt: { '$gte': start, '$lte': end }});
           
             return res.send( results);
         } catch (error) {

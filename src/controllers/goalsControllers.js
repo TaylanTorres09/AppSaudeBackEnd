@@ -20,7 +20,8 @@ module.exports = {
         try {
             const { patient_id } = req.body;
             const filter = { patient_id: patient_id };
-            const data = await Goals.Goals.findOneAndUpdate(filter, req.body, { new: true, useFindAndModify: false });
+            const data = await Goals.Goals.findOneAndUpdate(filter, req.body, 
+                                                            { new: true, useFindAndModify: false });
             res.send({ data })
 
         } catch (error) {
