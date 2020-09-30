@@ -9,11 +9,11 @@ module.exports = {
 
     getDataByUserId: async (req, res) => {
         try {
-            
+
             const result = await ProfessionalData
-                            .findOne({profissional_id: req.body.profissional_id})
-                            .lean()
-                            .populate({ path: 'profissional_id'  })
+                .findOne({ profissional_id: req.body.profissional_id })
+                .lean()
+                .populate({ path: 'profissional_id' })
 
             return res.send(result);
         } catch (error) {
@@ -23,26 +23,22 @@ module.exports = {
 
     getPatientes: async (req, res) => {
         try {
-            const {profissional_id} = req.body;
-            await ProfessionalData
-                            .findOne({profissional_id: profissional_id})
-                            .lean()
-                            .populate({ path: 'patients', select: 'firstName patientData'  })
-                            .exec(function(err, docs) {
-                            
-                                var options = {
-                                path: 'patients.patientData',
-                                model: 'PatientData'
-                                };
-                            
-                                if (err) return res.json(500);
-                                ProfessionalData.populate(docs, options, function (err, projects) {
-                                res.json(projects);
-                                });
-                            });
-                                    // populate('patients');
+            console.log( req.body)
+            const { profissional_id } = req.body;
+            const result = await ProfessionalData
+                .findOne({ profissional_id: profissional_id })
+                .select('patients')
+                .lean()
+                .populate({ 
+                    path: 'patients',
+                    populate: {
+                        path: 'patientData',
+                    }
+                })
 
-            // return res.send(results);
+
+            return res.send(result);
+
         } catch (error) {
             console.log(error.message);
         }
@@ -67,7 +63,7 @@ module.exports = {
             const update = { "$set": { patients: patient_id } };
             const data = await ProfessionalData.findOneAndUpdate(filter, update, { new: true, useFindAndModify: false });
 
-            res.send({data})
+            res.send({ data })
         } catch (error) {
             console.log(error.message);
             res.send('Erro')

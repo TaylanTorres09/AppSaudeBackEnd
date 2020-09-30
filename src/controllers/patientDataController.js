@@ -1,9 +1,10 @@
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 
-const PatientData = require('../database/models/patienteData.model');
 const Patient = require('../database/models/patient.model');
+const PatientData = require('../database/models/patienteData.model');
 const Profissional = require('../database/models/professional.model');
+const ProfessionalData = require('../database/models/profissionalData.model');
 
 
 module.exports = {
@@ -22,7 +23,7 @@ module.exports = {
     },
     getProfissional: async(req, res) => {
         try {
-            console.debug(req.body)
+         
             const results = await PatientData
                 .findOne({ patient_id: req.body.patient_id })
                 .select('profissionals')
@@ -75,16 +76,20 @@ module.exports = {
 
     insertProfissional: async(req, res) => {
         try {
-            const { patient_id } = req.body;
+            const { patient_id,  email } = req.body;
 
-            const { email } = req.body;
+  
             const { _id } = await Profissional.findOne({ email: email });
 
-            const filter = { patient_id: patient_id };
-            const update = { "$push": { profissionals: _id } };
-            const data = await PatientData.findOneAndUpdate(filter, update, { new: true, useFindAndModify: false });
+            const filter_patient = { patient_id: patient_id };
+            const update_patient = { "$push": { profissionals: _id } };
+            const data_patient = await PatientData.findOneAndUpdate(filter_patient, update_patient, { new: true, useFindAndModify: false });
 
-            res.send({ data })
+            const filter_profissional = { profissional_id: _id };
+            const update_profissional = { "$push": { patients: patient_id } };
+            const data_profissional = await ProfessionalData.findOneAndUpdate(filter_profissional, update_profissional, { new: true, useFindAndModify: false });
+            
+            res.send({ data_patient })
         } catch (error) {
             console.log(error.message);
             res.send('Erro')
