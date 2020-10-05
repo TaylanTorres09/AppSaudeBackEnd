@@ -6,15 +6,15 @@ const secret = require('../secret/secret.json')
 
 module.exports = {
     registerProfessional: async (req, res) => {
-        const { email } = req.body
+        const { firstName, lastName, email, password, Doc } = req.body
         try {
             if (await Professional.findOne({ email })) {
                 return res.status(400).send({ message: 'User exists' });
             }
 
-            const newProfessional = new Professional(req.body);
+            const newProfessional = new Professional({  email: email, password: password });
             const user = await newProfessional.save();
-            const newProfessionalData = new ProfessionalData({ profissional_id: user._id });
+            const newProfessionalData = new ProfessionalData({ profissional_id: user._id, firstName: firstName, lastName: lastName, Doc: Doc});
             const data = await newProfessionalData.save();
             const userUpdated = await Professional.findOneAndUpdate({ _id: user._id }, { profissionalData: data._id }, { new: true, useFindAndModify: false });
 

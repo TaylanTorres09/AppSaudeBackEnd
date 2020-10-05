@@ -28,7 +28,12 @@ module.exports = {
                 .findOne({ patient_id: req.body.patient_id })
                 .select('profissionals')
                 .lean()
-                .populate({ path: 'profissionals' })
+                .populate({ 
+                    path: 'profissionals',
+                    populate: {
+                        path: 'profissionalData',
+                    }
+                })
 
 
             return res.send(results);

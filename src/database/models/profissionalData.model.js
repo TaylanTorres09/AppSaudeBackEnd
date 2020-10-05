@@ -4,6 +4,12 @@ const mongoose = require('mongoose');
 
 const ProfissionalDDataSchema = new mongoose.Schema({
     profissional_id: { type: mongoose.Schema.Types.ObjectId, ref: "Profissional",  required: true },
+
+    firstName: {  type: String, require: true, },
+    
+    lastName: { type: String, required: true },
+
+    Doc: { type: Number, unique: true, require: true }, //Profissional document which confirms his credential to practice a profession
     
     specialization: {type: String},
     
@@ -20,12 +26,10 @@ const ProfissionalDDataSchema = new mongoose.Schema({
     // Experiência
     about: { type: String },
     experience : [{ type: String }],
-    condition: [{ type: String }],
+   
 
     birth: { type: Date},
-    // Add more kind of data  <-------------- Taylan // DArlan
-
-
+  
 
     patients: [{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" }],
     goals: [{ type: mongoose.Schema.Types.ObjectId, ref: "Goals" }]

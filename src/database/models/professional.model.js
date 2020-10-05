@@ -3,13 +3,9 @@ const bcrypt = require('bcrypt');
 
 
 const ProfissionalSchema = new mongoose.Schema({
-    firstName: {  type: String, require: true, },
-    
-    lastName: { type: String, required: true },
+
 
     email: { type: String, unique: true, require: true, lowercase: true },
-
-    Doc: { type: Number, unique: true, require: true }, //Profissional document which confirms his credential to practice a profession
 
     password: { type: String, required: true, select: false, },
 
