@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const moment = require('moment-timezone')
 
 
 const dailyAssessmentSchema = new mongoose.Schema({
 
-    createdAt: { type: Date, default: Date.now, },
+    createdAt: { type: Date, default: moment.tz("America/Sao_Paulo").utc(true), },
 
     patient_id: { type: mongoose.Schema.Types.ObjectId, ref: "Patient"},
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('./routes/routes');
 const cors = require('cors');
+const helmet = require('helmet');
 
 // Initialize DB
 require('./database/initDB')();
@@ -9,6 +10,7 @@ require('./database/initDB')();
 
 const app = express();
 
+app.use(helmet())
 app.use(express.json());
 app.use(cors());
 app.use(routes);

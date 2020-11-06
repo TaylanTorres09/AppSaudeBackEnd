@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const Patient = require('../database/models/patient.model')
 const PatientData = require('../database/models/patienteData.model')
 
+
 const secret = require('../secret/secret.json')
 
 function generateAccessToken(user) {
@@ -22,7 +23,8 @@ module.exports = {
             const user = await newPatient.save();
             const newPatientData = new PatientData({ patient_id: user._id, firstName: firstName, lastName: lastName });
             const data = await newPatientData.save();
-            const userUpdated = await Patient.findOneAndUpdate({ _id: user._id }, { patientData: data._id }, { new: true, useFindAndModify: false });
+            const userUpdated = await Patient.findOneAndUpdate({ _id: user._id }, { patientData: data._id }, 
+                                                                     { new: true, useFindAndModify: false });
             // user.patientData = data._id
             user.password = undefined;
             const token = generateAccessToken({ id: user.id });

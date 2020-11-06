@@ -9,7 +9,9 @@ const PatientSchema = new mongoose.Schema({
 
     createdAt: { type: Date, default: Date.now, },
 
-    patientData: {type:mongoose.Schema.Types.ObjectId, ref:'PatientData'}
+    patientData: {type:mongoose.Schema.Types.ObjectId, ref:'PatientData'},
+
+    frequency: { type: mongoose.Schema.Types.ObjectId, ref:'UserFrequency'}
 });
 
 PatientSchema.pre('save', async function (next) {
